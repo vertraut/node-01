@@ -1,3 +1,4 @@
+const shortID = require("shortid");
 const fs = require("fs").promises;
 
 const path = require("path");
@@ -32,7 +33,15 @@ function removeContact(contactId) {
 }
 
 function addContact(name, email, phone) {
-  // ...твой код
+  fetchContacts().then((data) => {
+    data.push({
+      id: shortID(),
+      name,
+      email,
+      phone,
+    });
+    wtiteToFile(data);
+  });
 }
 
 function fetchContacts() {

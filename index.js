@@ -16,12 +16,7 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case "add":
-      // ... name email phone
-
-      console.log(
-        `->add contact with name - ${name}, email - ${email}, phone - ${phone}`
-      );
-
+      apiContacts.addContact(name, email, phone);
       break;
 
     case "remove":
