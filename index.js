@@ -25,8 +25,7 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case "remove":
-      // ... id
-      console.log(`->remove contact with id ${id}`);
+      apiContacts.removeContact(id);
 
       break;
 

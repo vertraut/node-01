@@ -16,12 +16,19 @@ function getContactById(contactId) {
       console.table(searchResult);
       return;
     }
-    console.log("Контакт с таким ID не найден!");
+    console.log(`Контакт с ID ${contactId} не найден!`);
   });
 }
 
 function removeContact(contactId) {
-  // ...твой код
+  fetchContacts().then((data) => {
+    const newArray = data.filter((item) => item.id !== contactId);
+    if (newArray.length === data.length) {
+      console.log(`Контакт с ID ${contactId} не найден!`);
+      return;
+    }
+    wtiteToFile(newArray);
+  });
 }
 
 function addContact(name, email, phone) {
@@ -36,6 +43,15 @@ function fetchContacts() {
       return JSON.parse(string);
     })
     .catch((error) => console.log(error.message));
+}
+
+function wtiteToFile(data) {
+  fs.writeFile(contactsPath, JSON.stringify(data))
+    .then(() => {
+      console.table(data);
+      console.log("База данных обновлена");
+    })
+    .catch((e) => console.log(e.message));
 }
 
 module.exports = { listContacts, getContactById, removeContact, addContact };
