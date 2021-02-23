@@ -8,14 +8,11 @@ const apiContacts = require("./contacts.js");
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      console.log("->list");
       apiContacts.listContacts();
       break;
 
     case "get":
-      // ... id
-      console.log(`->get contact with id ${id}`);
-
+      apiContacts.getContactById(id);
       break;
 
     case "add":
